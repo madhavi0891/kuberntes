@@ -16,12 +16,12 @@
   block:
     - name: "Get Helm installer"
       get_url:
-        url: https://raw.githubusercontent.com/helm/helm/master/scripts/get
+        url: curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
         dest: "{{ tmp_dir }}/get_helm.sh"
         mode: 0755
   
     - name: "Run the installer"
-      shell: "{{ tmp_dir }}/get_helm.sh"
+      shell: "{{ tmp_dir }}/chmod 700 get_helm.sh"
 
   when: helm_exists.rc > 0
   tags: helm
